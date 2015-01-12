@@ -1,13 +1,12 @@
 include ../mak/make.settings
 
-INCDIR := $(TOPDIR)/include
 OBJDIR := $(BUILDDIR)/libapueobjs
-
-CFLAGS += -I$(INCDIR)
 
 TARGET := $(LIBDIR)/libunp$(LIBSUFFIX)
 DIRS   := $(BUILDDIR) $(LIBDIR) $(OBJDIR)
+SRCS   = $(OBJS:.o=.c)
 OBJS   := error.o
+
 
 VPATH = $(INCDIR):$(OBJDIR)
 
@@ -24,8 +23,10 @@ dirs:
 $(TARGET): $(OBJS)
 	$(AR) -cr $@ $(OBJDIR)/*
 
+sinclude $(SRCS:.c=.d)
+
 .c.o:
-	$(CC) $(CFLAGS) -c $< -o $(OBJDIR)/$@
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $(OBJDIR)/$@
 
 clean:
 	-rm $(TARGET)

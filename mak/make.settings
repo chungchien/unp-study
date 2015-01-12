@@ -1,25 +1,35 @@
-OSNAME := $(shell uname)
+TOPDIR := ..
+BUILDDIR := $(TOPDIR)/build
 
 CC = clang
 
+OSNAME := $(shell uname)
 ifeq ($(OSNAME), FreeBSD)
-  CFLAGS += -DFREEBSD -DBSD
+  CPPFLAGS += -DFREEBSD -DBSD
 endif
 ifeq ($(OSNAME), Linux)
-  CFLAGS += -DLINUX
+  CPPFLAGS += -DLINUX
 endif
 
 ifdef DEBUG
-  BUILDTYPE := debug
-  LIBSUFFIX := d.a
-  CFLAGS += -g -D_DEBUG
+  BUILDTYPE:=debug
+  BUILDTYPE_MK := $(TOPDIR)/mak/debug.mk
+elifdef RELEASE
+  BUILDTYPE:=release
+  BUILDTYPE_MK := $(TOPDIR)/mak/release.mk
 else
-  BUILDTYPE := release
-  LIBSUFFIX := .a
-  CFLAGS += -O -DNDEBUG
+  BUILDTYPE:=default
+  BUILDTYPE_MK := $(shell \
+    test -f $(BUILDDIR)/latest.mk && echo "$(BUILDDIR)/latest.mk" || \
+    echo "$(TOPDIR)/mak/release.mk")
 endif
 
-TOPDIR ?= ..
-BUILDDIR ?= ../build
-BINDIR ?= $(BUILDDIR)/$(BUILDTYPE)
-LIBDIR ?= $(BUILDDIR)/lib
+include $(BUILDTYPE_MK)
+
+BUILDDIR := $(BUILDDIR)/$(BUILDTYPE)
+BINDIR := $(BUILDDIR)/$(BUILDTYPE)
+LIBDIR := $(BUILDDIR)/lib
+
+CPPFLAGS += -I$(TOPDIR)/include
+
+include $(TOPDIR)/mak/generate-depends.mk
