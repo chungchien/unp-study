@@ -29,9 +29,11 @@ endif
 include $(BUILDTYPE_MK)
 
 BUILDDIR := $(BUILDDIR)/$(BUILDTYPE)
-BINDIR := $(BUILDDIR)/$(BUILDTYPE)
+BINDIR := $(BUILDDIR)/bin
 LIBDIR := $(BUILDDIR)/lib
 
 CPPFLAGS += -I$(TOPDIR)/include
+LDFLAGS += -lunp -L$(LIBDIR)
 
 include $(TOPDIR)/mak/generate-depends.mk
+

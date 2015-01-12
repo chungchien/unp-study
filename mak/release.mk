@@ -1,5 +1,4 @@
 BUILDTYPE := release
-LIBSUFFIX := .a
 CPPFLAGS += -DNDEBUG
 CFLAGS += -O $(CPPFLAGS)
 

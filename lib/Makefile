@@ -1,8 +1,8 @@
 include ../mak/make.settings
 
-OBJDIR := $(BUILDDIR)/libapueobjs
+OBJDIR := $(BUILDDIR)/libunpobjs
 
-TARGET := $(LIBDIR)/libunp$(LIBSUFFIX)
+TARGET := $(LIBDIR)/libunp.a
 DIRS   := $(BUILDDIR) $(LIBDIR) $(OBJDIR)
 SRCS   = $(OBJS:.o=.c)
 OBJS   := error.o

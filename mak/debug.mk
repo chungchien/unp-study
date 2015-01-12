@@ -1,5 +1,4 @@
 BUILDTYPE := debug
-LIBSUFFIX := d.a
 CPPFLAGS += -D_DEBUG
 CFLAGS += -g $(CPPFLAGS)
 
