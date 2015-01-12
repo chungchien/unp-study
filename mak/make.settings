@@ -14,14 +14,16 @@ endif
 ifdef DEBUG
   BUILDTYPE:=debug
   BUILDTYPE_MK := $(TOPDIR)/mak/debug.mk
-elifdef RELEASE
-  BUILDTYPE:=release
-  BUILDTYPE_MK := $(TOPDIR)/mak/release.mk
 else
-  BUILDTYPE:=default
-  BUILDTYPE_MK := $(shell \
-    test -f $(BUILDDIR)/latest.mk && echo "$(BUILDDIR)/latest.mk" || \
-    echo "$(TOPDIR)/mak/release.mk")
+  ifdef RELEASE
+    BUILDTYPE:=release
+    BUILDTYPE_MK := $(TOPDIR)/mak/release.mk
+  else
+    BUILDTYPE:=default
+    BUILDTYPE_MK := $(shell \
+      test -f $(BUILDDIR)/latest.mk && echo "$(BUILDDIR)/latest.mk" || \
+      echo "$(TOPDIR)/mak/release.mk")
+  endif
 endif
 
 include $(BUILDTYPE_MK)

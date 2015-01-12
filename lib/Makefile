@@ -21,12 +21,12 @@ dirs:
 	done
 
 $(TARGET): $(OBJS)
-	$(AR) -cr $@ $(OBJDIR)/*
+	$(AR) -cr $@ $^
 
 sinclude $(SRCS:.c=.d)
 
 .c.o:
-	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $(OBJDIR)/$@
+	$(CC) $(CFLAGS) -c $< -o $(OBJDIR)/$@
 
 clean:
 	-rm $(TARGET)
