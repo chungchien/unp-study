@@ -1,0 +1,25 @@
+OSNAME := $(shell uname)
+
+CC = clang
+
+ifeq ($(OSNAME), FreeBSD)
+  CFLAGS += -DFREEBSD -DBSD
+endif
+ifeq ($(OSNAME), Linux)
+  CFLAGS += -DLINUX
+endif
+
+ifdef DEBUG
+  BUILDTYPE := debug
+  LIBSUFFIX := d.a
+  CFLAGS += -g -D_DEBUG
+else
+  BUILDTYPE := release
+  LIBSUFFIX := .a
+  CFLAGS += -O -DNDEBUG
+endif
+
+TOPDIR ?= ..
+BUILDDIR ?= ../build
+BINDIR ?= $(BUILDDIR)/$(BUILDTYPE)
+LIBDIR ?= $(BUILDDIR)/lib
