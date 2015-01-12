@@ -21,7 +21,7 @@ dirs:
 	done
 
 $(TARGET): $(OBJS)
-	$(AR) -cr $@ $^
+	$(AR) -cr $@ $(OBJDIR)/*
 
 sinclude $(SRCS:.c=.d)
 

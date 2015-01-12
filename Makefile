@@ -7,4 +7,4 @@ lib:
 	$(MAKE) -C lib
 
 clean:
-	$(MAKE) clean -C lib
+	rm -rf build
