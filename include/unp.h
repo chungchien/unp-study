@@ -11,7 +11,7 @@
 #include <memory.h>
 
 #define MAXLINE		1024
-
+#define LISTENQ		10
 typedef struct sockaddr SA;
 
 /*
@@ -24,7 +24,7 @@ int Accept(int sockfd, struct sockaddr *addr, socklen_t *addlen);
 int Connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
 int Write(int fd, const void *buf, size_t nbytes);
 int Read(int fd, void *buf, size_t nbytes);
-
+int Close(int fd);
 /*
  * Nonfatal error related to a system call.
  * Print a message and return

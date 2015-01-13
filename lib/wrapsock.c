@@ -61,3 +61,11 @@ Read(int fd, void *buf, size_t nbytes)
     err_sys("read error");
   return n;
 }
+
+int
+Close(int fd)
+{
+  if (close(fd) < 0)
+    err_sys("close error");
+  return 0;
+}
