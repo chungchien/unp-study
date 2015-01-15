@@ -14,18 +14,20 @@ main(int argc, char **argv[])
   bzero(&servaddr, sizeof(servaddr));
   servaddr.sin_family = AF_INET;
   servaddr.sin_addr.s_addr = htonl(INADDR_ANY);
-  servaddr.sin_port = htons(13);  /* daytime server */
+  servaddr.sin_port = htons(9999);  /* daytime server */
 
   Bind(listenfd, (SA *) &servaddr, sizeof(servaddr));
 
   Listen(listenfd, LISTENQ);
 
   for ( ; ; ) {
+    int i;
     connfd = Accept(listenfd, (SA *) NULL, NULL);
 
     ticks = time(NULL);
     snprintf(buff, sizeof(buff), "%.24s\r\n", ctime(&ticks));
-    Write(connfd, buff, strlen(buff));
+    for (i = 0; i < strlen(buff); i++)
+      Write(connfd, &buff[i], 1);
 
     Close(connfd);
   }
