@@ -1,0 +1,1 @@
+#define CPU_VENDOR_OS "${CPU_VENDOR_OS}"
