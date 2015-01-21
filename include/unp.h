@@ -68,6 +68,7 @@ void err_quit(const char *fmt, ...);
 #ifndef INET_ADDRSTRLEN
 #define INET_ADDRSTRLEN 16  /* for IPv4 dotted-decimal */
 #endif
+
 #ifndef INET6_ADDRSTRLEN
 #define INET6_ADDRSTRLEN 46  /* for IPv6 hex string */
 #endif
@@ -75,11 +76,16 @@ void err_quit(const char *fmt, ...);
 #if !defined(HAVE_INET_PTON)
 int inet_pton(int family, const char *strptr, void *addrptr);
 #endif
+
 #if !defined(HAVE_INET_NTOP)
 const char *inet_ntop(int family,
                       const void *addrptr,
                       char *strptr,
                       size_t len);
 #endif
+
+/* 將sa中的IP地址轉換肌字符串。其中IPv4轉換為點分十進制後加冒號加端口號，
+ * IPv6轉換為中括號包圍的十六進制後加冒號加端口號 */
+char *sock_ntop(const struct sockaddr *sa, socklen_t salen);
 
 #endif // UNPEXERCISE_UNP_H_
