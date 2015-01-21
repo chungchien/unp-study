@@ -1,1 +1,16 @@
 #define CPU_VENDOR_OS "${CPU_VENDOR_OS}"
+
+/* 如果相應的頭文件存在則由cmake定義 */
+#cmakedefine HAVE_STRINGS_H 1  /* strings.h */
+#cmakedefine HAVE_STRING_H 1   /* string.h */
+#cmakedefine HAVE_NETINET_IN_H 1  /* netinet/in.h */
+#cmakedefine HAVE_ARPA_INET_H 1   /* arpa/inet.h */
+
+/* 如果函數存在則由cmake定義*/
+#cmakedefine HAVE_BZERO 1  /* bzero */
+#cmakedefine HAVE_INET_PTON 1  /* inet_pton */
+#cmakedefine HAVE_INET_NTOP 1  /* inet_ntop */
+
+/* 檢查符號是否定義 */
+#cmakedefine HAVE_INET_ADDRSTRLEN  /* INET_ADDRSTRLEN in <netinet/in.h> */
+#cmakedefine HAVE_INET6_ADDRSTRLEN /* INET6_ADDRSTRLEN in <netinet/in.h> */

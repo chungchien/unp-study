@@ -11,6 +11,8 @@ TARGET_LINK_LIBRARIES(daytimetcpcliv6 unp)
 TARGET_LINK_LIBRARIES(daytimetcpsrv unp)
 TARGET_LINK_LIBRARIES(byteorder unp)
 
+SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
+
 INSTALL(TARGETS
   daytimetcpcli
   daytimetcpcliv6

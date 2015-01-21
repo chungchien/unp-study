@@ -15,6 +15,13 @@
 #define LISTENQ		10
 typedef struct sockaddr SA;
 
+#if !defined(HAVE_BZERO)
+inline void bzero(void *dest, size_t nbytes)
+{
+  memset(dest, 0, nbytes);
+}
+#endif  /* !defined(HAVE_BZERO) */
+
 /*
  * socket包裹函數。皆以大寫其所包含數首字母以名之。
  */
@@ -58,5 +65,21 @@ void err_msg(const char *fmt, ...);
  */
 void err_quit(const char *fmt, ...);
 
+#ifndef INET_ADDRSTRLEN
+#define INET_ADDRSTRLEN 16  /* for IPv4 dotted-decimal */
+#endif
+#ifndef INET6_ADDRSTRLEN
+#define INET6_ADDRSTRLEN 46  /* for IPv6 hex string */
+#endif
+
+#if !defined(HAVE_INET_PTON)
+int inet_pton(int family, const char *strptr, void *addrptr);
+#endif
+#if !defined(HAVE_INET_NTOP)
+const char *inet_ntop(int family,
+                      const void *addrptr,
+                      char *strptr,
+                      size_t len);
+#endif
 
 #endif // UNPEXERCISE_UNP_H_
