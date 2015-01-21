@@ -86,6 +86,17 @@ const char *inet_ntop(int family,
                       size_t len);
 #endif
 
+/* 儘量從文件描述符䢱取“n”個字符 */
+ssize_t readn(int fd, void *buff, size_t nbytes);
+/* 寫入“n”個字符到給定文件描述符；如果不能寫够n個則返回-1 */
+ssize_t writen(int fd, const void *buff, size_t nbytes);
+/* 讀取一行，類似fgets函數，會自動添加空字符 */
+ssize_t readline(int fd, void *buff, size_t maxlen);
+#if !defined(USE_READLINE_NOBUFFER)
+/* 獲取readline使用的緩沖區 */
+ssize_t readlinebuf(void **vptrptr);
+#endif
+
 /* 將sa中的IP地址轉換肌字符串。其中IPv4轉換為點分十進制後加冒號加端口號，
  * IPv6轉換為中括號包圍的十六進制後加冒號加端口號 */
 char *sock_ntop(const struct sockaddr *sa, socklen_t salen);

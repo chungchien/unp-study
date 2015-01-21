@@ -16,3 +16,8 @@
 /* 檢查符號是否定義 */
 #cmakedefine HAVE_INET_ADDRSTRLEN  /* INET_ADDRSTRLEN in <netinet/in.h> */
 #cmakedefine HAVE_INET6_ADDRSTRLEN /* INET6_ADDRSTRLEN in <netinet/in.h> */
+
+
+/* 開關選項 */
+#cmakedefine USE_READLINE_NOBUFFER  /* 如果開啟了該選項，使用不帶緩沖
+                                     * 的readline函數 */

@@ -9,6 +9,10 @@ set(CMAKE_MODULE_PATH
   "${PROJECT_SOURCE_DIR}/cmake/modules"
 )
 
+
+# 開關選項
+option(USE_READLINE_NOBUFFER "使用不帶緩沖的readline函數" OFF)
+
 # 檢查頭文件是否存在
 include(CheckIncludeFiles)
 check_include_files(strings.h HAVE_STRINGS_H)
@@ -32,6 +36,7 @@ check_symbol_exists(INET6_ADDRSTRLEN netinet/in.h HAVE_INET6_ADDRSTRLEN)
 # 設置CPU_VENDOR_OS的值
 include(GetHostTriple)
 get_host_triple(CPU_VENDOR_OS)
+
 
 # 設置機器信息配置文件輸出
 configure_file(
