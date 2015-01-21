@@ -8,6 +8,8 @@
 
 /* 如果函數存在則由cmake定義*/
 #cmakedefine HAVE_BZERO 1  /* bzero */
+#cmakedefine HAVE_SNPRINTF 1 /* snprintf */
+#cmakedefine HAVE_VSNPRINTF 1  /* svnprintf */
 #cmakedefine HAVE_INET_PTON 1  /* inet_pton */
 #cmakedefine HAVE_INET_NTOP 1  /* inet_ntop */
 

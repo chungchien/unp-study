@@ -21,6 +21,8 @@ include(CheckFunctionExists)
 check_function_exists(bzero HAVE_BZERO)
 check_function_exists(inet_pton HAVE_INET_PTON)
 check_function_exists(inet_ntop HAVE_INET_NTOP)
+check_function_exists(snprintf HAVE_SNPRINTF)
+check_function_exists(vsnprintf HAVE_VSNPRINTF)
 
 # 檢查符號是否定義
 include(CheckSymbolExists)
