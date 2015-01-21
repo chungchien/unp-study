@@ -11,6 +11,7 @@
 #include <string.h>
 #include <memory.h>
 #include <errno.h>
+#include <assert.h>
 
 #define MAXLINE		1024
 #define LISTENQ		10
@@ -88,8 +89,12 @@ const char *inet_ntop(int family,
 /* 將sa中的IP地址轉換肌字符串。其中IPv4轉換為點分十進制後加冒號加端口號，
  * IPv6轉換為中括號包圍的十六進制後加冒號加端口號 */
 char *sock_ntop(const struct sockaddr *sa, socklen_t salen);
-/* 比較兩個套節字地址結構的地址部分。相同返回0，否則返回非0值 */
+/* 比較兩個套節字地址結構的地址部分，若相同返回0。 */
 int sock_cmp_addr(const struct sockaddr *sockaddr1,
+                  const struct sockaddr *sockaddr2,
+                  socklen_t addrlen);
+/* 比較兩個套節字地址結構的端口部分。若相同返回0。 */
+int sock_cmp_port(const struct sockaddr *sockaddr1,
                   const struct sockaddr *sockaddr2,
                   socklen_t addrlen);
 
