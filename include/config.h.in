@@ -1,5 +1,8 @@
 #define CPU_VENDOR_OS "${CPU_VENDOR_OS}"
 
+/* 如果是在Linux系統上，則定義之 */
+#cmakedefine _GNU_SOURCE
+
 /* 如果相應的頭文件存在則由cmake定義 */
 #cmakedefine HAVE_STRINGS_H 1  /* strings.h */
 #cmakedefine HAVE_STRING_H 1   /* string.h */
@@ -20,4 +23,9 @@
 
 /* 開關選項 */
 #cmakedefine USE_READLINE_NOBUFFER  /* 如果開啟了該選項，使用不帶緩沖
-                                     * 的readline函數 */
+				     * 的readline函數 */
+/* 如果存在IPv4則定義 */
+#cmakedefine IPV4 1
+
+/* 如果存在IPv6則定義 */
+#cmakedefine IPV6 1
