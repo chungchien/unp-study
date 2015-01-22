@@ -44,6 +44,31 @@ function(check_type_exists type file_list variable)
     " ${variable})
 endfunction(check_type_exists)
 
+# 檢查類型尺寸
+include(CheckTypeSize)
+function(check_c_type_size type variable)
+  check_type_size(${type} ${variable}  LANGUAGE C)
+endfunction(check_c_type_size)
+
+check_c_type_size(char CHAR_SIZE)
+check_c_type_size(wchar_t WCHAR_T_SIZE)
+check_c_type_size(short SHORT_SIZE)
+check_c_type_size(int INT_SIZE)
+check_c_type_size(long LONG_SIZE)
+check_c_type_size("long long" LONG_LONG_SIZE)
+check_c_type_size(float FLOAT_SIZE)
+check_c_type_size(double DOUBLE_SIZE)
+check_c_type_size("long double" LONG_DOUBLE_SIZE)
+check_c_type_size("long long double" LONG_LONG_DOUBLE_SIZE)
+check_c_type_size("void *" POINTER_SIZE)
+
+
+# 檢查類型是否存在
+set(HAVE_WCHAR_T ${HAVE_WCHAR_T_SIZE})
+set(HAVE_LONG_LONG ${HAVE_LONG_LONG_SIZE})
+set(HAVE_LONG_DOUBLE ${HAVE_LONG_DOUBLE_SIZE})
+set(HAVE_LONG_LONG_DOUBLE ${HAVE_LONG_LONG_DOUBLE_SIZE})
+
 include(CheckCSourceRuns)
 
 function(check_ipv4 variable)

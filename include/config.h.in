@@ -30,3 +30,20 @@
 
 /* 如果存在IPv6則定義 */
 #cmakedefine IPV6 1
+
+#cmakedefine HAVE_WCHAR_T
+#cmakedefine HAVE_LONG_LONG
+#cmakedefine HAVE_LONG_DOUBLE
+#cmakedefine HAVE_LONG_LONG_DOUBLE
+
+#cmakedefine CHAR_SIZE ${CHAR_SIZE}
+#cmakedefine WCHAR_T_SIZE ${WCHAR_T_SIZE}
+#cmakedefine SHORT_SIZE ${SHORT_SIZE}
+#cmakedefine INT_SIZE ${INT_SIZE}
+#cmakedefine LONG_SIZE ${LONG_SIZE}
+#cmakedefine LONG_LONG_SIZE ${LONG_LONG_SIZE}
+#cmakedefine FLOAT_SIZE ${FLOAT_SIZE}
+#cmakedefine DOUBLE_SIZE ${DOUBLE_SIZE}
+#cmakedefine LONG_DOUBLE_SIZE ${LONG_DOUBLE_SIZE}
+#cmakedefine LONG_LONG_DOUBLE_SIZE ${LONG_LONG_DOUBLE_SIZE}
+#cmakedefine POINTER_SIZE ${POINTER_SIZE}
