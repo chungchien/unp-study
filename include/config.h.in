@@ -22,8 +22,9 @@
 
 
 /* 開關選項 */
-#cmakedefine USE_READLINE_NOBUFFER  /* 如果開啟了該選項，使用不帶緩沖
-				     * 的readline函數 */
+/* 如果定義了該選項，使用不帶緩沖的readline函數 */
+#cmakedefine USE_READLINE_NOBUFFER
+
 /* 如果存在IPv4則定義 */
 #cmakedefine IPV4 1
 
