@@ -1,4 +1,15 @@
 cmake_minimum_required(VERSION 2.8)
+
+# 如果存在 clang 使用 clang 做爲默認的編譯器
+if (NOT CMAKE_C_COMPILER AND NOT CMAKE_CXX_COMPILER)
+  find_program(CLANG "clang")
+  find_program(CLANG_CXX "clang++")
+  if (CLANG AND CLANG_CXX)
+    set(CMAKE_C_COMPILER ${CLANG})
+    set(CMAKE_CXX_COMPILER ${CLANG_CXX})
+  endif (CLANG AND CLANG_CXX)
+endif (NOT CMAKE_C_COMPILER AND NOT CMAKE_CXX_COMPILER)
+
 project(UNP)
 
 # 添加自定義模塊路徑
