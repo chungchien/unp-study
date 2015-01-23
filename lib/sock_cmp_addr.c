@@ -22,7 +22,7 @@ int sock_cmp_addr(const struct sockaddr *addr1,
                     sizeof(struct in6_addr));
     }
     default:
-      errno = ENOTSUP;
+      errno = EAFNOSUPPORT;
       return -1;
   }
 }

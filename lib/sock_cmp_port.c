@@ -19,7 +19,7 @@ int sock_cmp_port(const struct sockaddr *addr1,
       return sin1->sin6_port == sin2->sin6_port ? 0 : 1;
     }
     default:
-      errno = ENOTSUP;
+      errno = EAFNOSUPPORT;
       return -1;
   }
 }
