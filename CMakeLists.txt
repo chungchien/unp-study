@@ -60,4 +60,5 @@ if (BUILD_TESTS)
 
   enable_testing()
   add_test(NAME runUnitTests COMMAND runUnitTests)
+  add_custom_target(check COMMAND runUnitTests)
 endif (BUILD_TESTS)
