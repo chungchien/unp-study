@@ -109,4 +109,11 @@ int sock_cmp_port(const struct sockaddr *sockaddr1,
                   const struct sockaddr *sockaddr2,
                   socklen_t addrlen);
 
+/* 獲取网絡套節字地址的端口號 。如果不提供端口號的地址，返回 -1*/
+int sock_get_port(const struct sockaddr *sockaddr, socklen_t addlen);
+
+/* 設置网絡套節字地址的端口號 */
+void sock_set_port(struct sockaddr *sockaddr,
+                   socklen_t addrlen, int port);
+
 #endif // UNPEXERCISE_UNP_H_
