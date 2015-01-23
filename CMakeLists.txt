@@ -13,15 +13,17 @@ endif (NOT CMAKE_C_COMPILER AND NOT CMAKE_CXX_COMPILER)
 # 設置項目名
 project(UNP)
 
+if (NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Debug CACHE STRING
+    "Choose the type of build, options are: Non Debug Release RelWithDebInfo
+MinSizeRel."
+    FORCE)
+endif ()
+
 set(CMAKE_C_FLAGS_DEBUG "$ENV{CFLAGS} -O0 -Wall -g -ggdb")
 set(CMAKE_C_FLAGS_RELEASE "$ENV{CFLAGS} -O2 -Wall")
 set(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g -ggdb")
 set(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O2 -Wall")
-
-# 默認生成 Debug 版
-if (NOT CMAKE_BUILD_TYPE)
-  set(CMAKE_BUILD_TYPE Debug)
-endif (NOT CMAKE_BUILD_TYPE)
 
 # 添加自定義模塊路徑
 set(CMAKE_MODULE_PATH
