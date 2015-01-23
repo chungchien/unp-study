@@ -1,5 +1,9 @@
 #ifndef UNPEXERCISE_UNP_H_
 #define UNPEXERCISE_UNP_H_
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "config.h"
 #include <unistd.h>
 #include <sys/types.h>
@@ -116,4 +120,8 @@ int sock_get_port(const struct sockaddr *sockaddr, socklen_t addlen);
 void sock_set_port(struct sockaddr *sockaddr,
                    socklen_t addrlen, int port);
 
+
+#ifdef __cplusplus
+}
+#endif
 #endif // UNPEXERCISE_UNP_H_

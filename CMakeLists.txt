@@ -10,7 +10,18 @@ if (NOT CMAKE_C_COMPILER AND NOT CMAKE_CXX_COMPILER)
   endif (CLANG AND CLANG_CXX)
 endif (NOT CMAKE_C_COMPILER AND NOT CMAKE_CXX_COMPILER)
 
+# 設置項目名
 project(UNP)
+
+set(CMAKE_C_FLAGS_DEBUG "$ENV{CFLAGS} -O0 -Wall -g -ggdb")
+set(CMAKE_C_FLAGS_RELEASE "$ENV{CFLAGS} -O2 -Wall")
+set(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g -ggdb")
+set(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O2 -Wall")
+
+# 默認生成 Debug 版
+if (NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Debug)
+endif (NOT CMAKE_BUILD_TYPE)
 
 # 添加自定義模塊路徑
 set(CMAKE_MODULE_PATH
@@ -22,7 +33,7 @@ set(CMAKE_MODULE_PATH
 
 # 開關選項
 option(USE_READLINE_NOBUFFER "使用不帶緩沖的readline函數" OFF)
-
+option(BUILD_TESTS "生成單元測試" OFF)
 
 # 包含 config-ix.cmake 以檢查系統環境
 include(config-ix)
@@ -33,7 +44,18 @@ configure_file(
   "${PROJECT_BINARY_DIR}/include/config.h"
   )
 include_directories("${PROJECT_BINARY_DIR}/include")
+include_directories("${PROJECT_SOURCE_DIR}/include")
 
 add_subdirectory(lib)
 add_subdirectory(libfree)
 add_subdirectory(intro)
+
+if (BUILD_TESTS)
+  add_subdirectory(gtest-1.7.0)
+  include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
+
+  add_subdirectory(test)
+
+  enable_testing()
+  add_test(NAME runUnitTests COMMAND runUnitTests)
+endif (BUILD_TESTS)
