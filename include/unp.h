@@ -13,9 +13,11 @@ extern "C" {
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stddef.h>
 #include <memory.h>
 #include <errno.h>
 #include <assert.h>
+#include <sys/un.h>
 
 #define MAXLINE		1024
 #define LISTENQ		10
