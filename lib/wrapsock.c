@@ -21,6 +21,12 @@ Bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen)
 int
 Listen(int sockfd, int backlog)
 {
+  const char *ptr;
+
+  /* 使用戶可通過 LISTENQ 環境變量覆寫 backlog  */
+  if ((ptr = getenv("LISTENQ")) != NULL)
+    backlog = atoi(ptr);
+
   if (listen(sockfd, backlog) < 0)
     err_sys("listen error");
   return 0;
