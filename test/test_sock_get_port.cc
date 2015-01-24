@@ -24,9 +24,19 @@ TEST(test_sock_get_port, InvalidProtocol) {
   bzero(&addr, sizeof(addr));
   addr.sun_family = AF_UNIX;
   strcpy(addr.sun_path, "foo.socket");
-  addr.sun_len = offsetof(struct sockaddr_un, sun_path) +
+  int len = offsetof(struct sockaddr_un, sun_path) +
       strlen(addr.sun_path);
 
-  EXPECT_EQ(-1, sock_get_port((struct sockaddr *) &addr, sizeof(addr)));
+  EXPECT_EQ(-1, sock_get_port((struct sockaddr *) &addr, len));
   EXPECT_EQ(EAFNOSUPPORT, errno);
 }
+
+
+
+
+
+
+
+
+
+
