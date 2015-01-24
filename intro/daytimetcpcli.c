@@ -4,7 +4,7 @@
 int
 main(int argc, char *argv[])
 {
-  int sockfd, n, count;
+  int sockfd, n;
   char recvline[MAXLINE];
   struct sockaddr_in servaddr;
 
@@ -23,14 +23,11 @@ main(int argc, char *argv[])
   if (connect(sockfd, (SA *)&servaddr, sizeof(servaddr)) < 0)
     err_sys("connect error");
 
-  count = 0;
   while ((n = read(sockfd, recvline, MAXLINE)) > 0) {
-    count++;
     recvline[n] = 0;  /* null terminate */
     if (fputs(recvline, stdout) == EOF)
       err_sys("fputs error");
   }
-  fprintf(stdout, "==>count is: %d\n", count);
   if (n < 0)
     err_sys("read error");
 
