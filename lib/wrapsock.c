@@ -10,15 +10,14 @@ Socket(int family, int type, int protocol)
   return n;
 }
 
-int
+void
 Bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen)
 {
   if (bind(sockfd, addr, addrlen) < 0)
     err_sys("bind error");
-  return 0;
 }
 
-int
+void
 Listen(int sockfd, int backlog)
 {
   const char *ptr;
@@ -29,7 +28,6 @@ Listen(int sockfd, int backlog)
 
   if (listen(sockfd, backlog) < 0)
     err_sys("listen error");
-  return 0;
 }
 
 int
@@ -42,36 +40,9 @@ Accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen)
   return n;
 }
 
-int
+void
 Connect(int sockfd, const struct sockaddr *name, socklen_t namelen)
 {
   if (connect(sockfd, name, namelen) < 0)
     err_sys("connect error");
-  return 0;
-}
-
-int
-Write(int fd, const void *buf, size_t nbytes)
-{
-  int n;
-  if ((n = write(fd, buf, nbytes)) < 0)
-    err_sys("write error");
-  return n;
-}
-
-int
-Read(int fd, void *buf, size_t nbytes)
-{
-  int n;
-  if ((n = read(fd, buf, nbytes)) < 0)
-    err_sys("read error");
-  return n;
-}
-
-int
-Close(int fd)
-{
-  if (close(fd) < 0)
-    err_sys("close error");
-  return 0;
 }
