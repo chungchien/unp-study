@@ -36,7 +36,7 @@ char *sock_ntop(const struct sockaddr *sa, socklen_t salen)
     }
 
     default:
-      errno = ENOTSUP;
+      errno = EAFNOSUPPORT;
       return NULL;
   }
 }
