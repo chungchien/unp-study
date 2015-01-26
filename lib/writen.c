@@ -20,3 +20,11 @@ ssize_t writen(int fd, const void *vptr, size_t n)
   }
   return n;
 }
+
+ssize_t Writen(int fd, const void *ptr, size_t n)
+{
+  int nret;
+  if ((nret = writen(fd, ptr, n)) < 0)
+    err_sys("writen error");
+  return nret;
+}

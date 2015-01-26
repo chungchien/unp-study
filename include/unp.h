@@ -20,7 +20,10 @@ extern "C" {
 #include <sys/un.h>
 
 #define MAXLINE		1024
-#define LISTENQ		10
+#define LISTENQ		1024
+#define SERV_PORT       9876
+#define SERV_PORT_STR   "9876"
+
 typedef struct sockaddr SA;
 
 #if !defined(HAVE_BZERO)
@@ -39,11 +42,29 @@ void Listen(int sockfd, int backlog);
 int Accept(int sockfd, struct sockaddr *addr, socklen_t *addlen);
 void Connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
 
+void str_echo(int sockfd);
+void str_cli(FILE *fp, int sockfd);
+
 /* unix 系統調用包裹函數  */
 int Write(int fd, const void *buf, size_t nbytes);
 int Read(int fd, void *buf, size_t nbytes);
 void Close(int fd);
 int Fork();
+
+/* stdio 的包裹函數  */
+char *Fgets(char *buf, int size, FILE *fp);
+int Fputs(const char *str, FILE *fp);
+FILE *Fopen(const char *path, const char *mode);
+void Fclose(FILE *fp);
+
+const char * Inet_ntop(int family, const void *addrptr,
+                       char *strptr, size_t len);
+void Inet_pton(int family, const char *strptr, void *addrptr);
+
+/* 我們自己的庫函數 */
+int Writen(int fd, const void *buf, size_t nbytes);
+int Readn(int fd, void *buf, size_t nbytes);
+int Readline(int fd, void *buf, size_t max_len);
 
 /*
  * Nonfatal error related to a system call.

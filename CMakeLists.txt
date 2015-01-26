@@ -51,6 +51,7 @@ include_directories("${PROJECT_SOURCE_DIR}/include")
 add_subdirectory(lib)
 add_subdirectory(libfree)
 add_subdirectory(intro)
+add_subdirectory(tcpcliserv)
 
 if (BUILD_TESTS)
   add_subdirectory(gtest-1.7.0)
