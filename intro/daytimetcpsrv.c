@@ -22,6 +22,7 @@ main(int argc, char *argv[])
   Listen(listenfd, LISTENQ);
 
   for ( ; ; ) {
+    len = sizeof(cliaddr);
     connfd = Accept(listenfd, (SA *) &cliaddr, &len);
     printf("connection from %s, port %d\n",
            inet_ntop(AF_INET, &cliaddr.sin_addr, buff, sizeof(buff)),
