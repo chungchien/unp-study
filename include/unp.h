@@ -34,13 +34,17 @@ inline void bzero(void *dest, size_t nbytes)
  * socket包裹函數。皆以大寫其所包含數首字母以名之。
  */
 int Socket(int family, int type, int protocol);
-int Bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
-int Listen(int sockfd, int backlog);
+void Bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
+void Listen(int sockfd, int backlog);
 int Accept(int sockfd, struct sockaddr *addr, socklen_t *addlen);
-int Connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
+void Connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
+
+/* unix 系統調用包裹函數  */
 int Write(int fd, const void *buf, size_t nbytes);
 int Read(int fd, void *buf, size_t nbytes);
-int Close(int fd);
+void Close(int fd);
+int Fork();
+
 /*
  * Nonfatal error related to a system call.
  * Print a message and return
