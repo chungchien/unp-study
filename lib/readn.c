@@ -22,3 +22,11 @@ ssize_t readn(int fd, void *vptr, size_t n)
   }
   return n - nleft;  /* return >= 0 */
 }
+
+ssize_t Readn(int fd, void *buf, size_t nbytes)
+{
+  ssize_t nret = readn(fd, buf, nbytes);
+  if (nret < 0)
+    err_sys("readn error");
+  return nret;
+}
