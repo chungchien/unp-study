@@ -46,8 +46,8 @@ void str_echo(int sockfd);
 void str_cli(FILE *fp, int sockfd);
 
 /* unix 系統調用包裹函數  */
-int Write(int fd, const void *buf, size_t nbytes);
-int Read(int fd, void *buf, size_t nbytes);
+ssize_t Write(int fd, const void *buf, size_t nbytes);
+ssize_t Read(int fd, void *buf, size_t nbytes);
 void Close(int fd);
 int Fork();
 
@@ -62,9 +62,9 @@ const char * Inet_ntop(int family, const void *addrptr,
 void Inet_pton(int family, const char *strptr, void *addrptr);
 
 /* 我們自己的庫函數 */
-int Writen(int fd, const void *buf, size_t nbytes);
-int Readn(int fd, void *buf, size_t nbytes);
-int Readline(int fd, void *buf, size_t max_len);
+ssize_t Writen(int fd, const void *buf, size_t nbytes);
+ssize_t Readn(int fd, void *buf, size_t nbytes);
+ssize_t Readline(int fd, void *buf, size_t max_len);
 
 /*
  * Nonfatal error related to a system call.

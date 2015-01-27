@@ -1,7 +1,7 @@
 /* wrapunix.c --- 包裹 UNIX 系統調用 */
 #include "unp.h"
 
-int
+ssize_t
 Write(int fd, const void *buf, size_t nbytes)
 {
   int n;
@@ -10,7 +10,7 @@ Write(int fd, const void *buf, size_t nbytes)
   return n;
 }
 
-int
+ssize_t
 Read(int fd, void *buf, size_t nbytes)
 {
   int n;
