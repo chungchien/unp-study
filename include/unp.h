@@ -8,6 +8,7 @@ extern "C" {
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/socket.h>
+#include <sys/wait.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <stdio.h>
@@ -18,6 +19,7 @@ extern "C" {
 #include <errno.h>
 #include <assert.h>
 #include <sys/un.h>
+#include <signal.h>
 
 #define MAXLINE		1024
 #define LISTENQ		1024
@@ -50,6 +52,12 @@ ssize_t Write(int fd, const void *buf, size_t nbytes);
 ssize_t Read(int fd, void *buf, size_t nbytes);
 void Close(int fd);
 int Fork();
+
+typedef void Sigfunc(int signo);
+#if !defined(HAVE_SIGNAL_PROTO)
+Sigfunc * signal(int signo, Sigfunc *func);
+#endif
+Sigfunc * Signal(int signo, Sigfunc *func);
 
 /* stdio 的包裹函數  */
 char *Fgets(char *buf, int size, FILE *fp);

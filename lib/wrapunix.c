@@ -34,3 +34,12 @@ Fork()
     err_sys("fork error");
   return ret;
 }
+
+Sigfunc *
+Signal(int signo, Sigfunc *func)
+{
+  Sigfunc *ret = signal(signo, func);
+  if (ret == SIG_ERR)
+    err_sys("signal error");
+  return ret;
+}

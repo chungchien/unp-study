@@ -20,10 +20,12 @@ include(CheckSymbolExists)
 check_symbol_exists(INET_ADDRSTRLEN netinet/in.h HAVE_INET_ADDRSTRLEN)
 check_symbol_exists(INET6_ADDRSTRLEN netinet/in.h HAVE_INET6_ADDRSTRLEN)
 
+include(CheckPrototypeExists)
+check_prototype_exists(signal signal.h HAVE_SIGNAL_PROTO)
+
 # 設置CPU_VENDOR_OS的值
 include(GetHostTriple)
 get_host_triple(CPU_VENDOR_OS)
-
 
 include(CheckCSourceCompiles)
 
