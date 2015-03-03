@@ -13,4 +13,7 @@ target_link_libraries(tcpcli04 unp)
 add_executable(tcpcliselect01 tcpcli.c ../select/strcliselect01.c)
 target_link_libraries(tcpcliselect01 unp)
 
+add_executable(tcpcliselect02 tcpcli.c ../select/strcliselect02.c)
+target_link_libraries(tcpcliselect02 unp)
+
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
