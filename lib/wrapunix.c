@@ -52,3 +52,10 @@ int Select(int nfds, fd_set *readfds, fd_set *writefds,
     err_sys("select error");
   return ret;
 }
+
+void
+Shutdown(int sockfd, int hwo)
+{
+  if (shutdown(sockfd, hwo) < 0)
+    err_sys("shutdown error");
+}

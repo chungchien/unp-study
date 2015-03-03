@@ -54,6 +54,8 @@ void Close(int fd);
 int Fork();
 int Select(int nfds, fd_set *readfds, fd_set *writefds,
            fd_set *exceptfds, struct timeval *timeout);
+void Shutdown(int sockfd, int how);
+
 typedef void Sigfunc(int signo);
 #if !defined(HAVE_SIGNAL_PROTO)
 Sigfunc * signal(int signo, Sigfunc *func);
