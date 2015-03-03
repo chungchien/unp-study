@@ -43,3 +43,12 @@ Signal(int signo, Sigfunc *func)
     err_sys("signal error");
   return ret;
 }
+
+int Select(int nfds, fd_set *readfds, fd_set *writefds,
+           fd_set *exceptfds, struct timeval *timeout)
+{
+  int ret;
+  if ((ret = select(nfds, readfds, writefds, exceptfds, timeout)) < 0)
+    err_sys("select error");
+  return ret;
+}
