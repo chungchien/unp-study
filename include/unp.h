@@ -52,7 +52,8 @@ ssize_t Write(int fd, const void *buf, size_t nbytes);
 ssize_t Read(int fd, void *buf, size_t nbytes);
 void Close(int fd);
 int Fork();
-
+int Select(int nfds, fd_set *readfds, fd_set *writefds,
+           fd_set *exceptfds, struct timeval *timeout);
 typedef void Sigfunc(int signo);
 #if !defined(HAVE_SIGNAL_PROTO)
 Sigfunc * signal(int signo, Sigfunc *func);
@@ -156,6 +157,13 @@ void sock_set_port(struct sockaddr *sockaddr,
                    socklen_t addrlen, int port);
 
 
+#ifndef max
+#define max(a, b) ((a) > (b) ? (a) : (b))
+#endif // max
+#ifndef min
+#define min(a, b) ((a) < (b) ? (a) : (b))
+#endif // min
+  
 #ifdef __cplusplus
 }
 #endif
