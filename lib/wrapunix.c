@@ -59,3 +59,11 @@ Shutdown(int sockfd, int hwo)
   if (shutdown(sockfd, hwo) < 0)
     err_sys("shutdown error");
 }
+
+int Poll(struct pollfd *fdarray, unsigned long nfds, int timeout)
+{
+  int ret;
+  if ((ret = poll(fdarray, nfds, timeout)) < 0)
+    err_sys("poll error");
+  return ret;
+}

@@ -20,6 +20,9 @@ extern "C" {
 #include <assert.h>
 #include <sys/un.h>
 #include <signal.h>
+#include <sys/select.h>
+#include <sys/time.h>
+#include <poll.h>
 
 #define MAXLINE		1024
 #define LISTENQ		1024
@@ -55,6 +58,7 @@ int Fork();
 int Select(int nfds, fd_set *readfds, fd_set *writefds,
            fd_set *exceptfds, struct timeval *timeout);
 void Shutdown(int sockfd, int how);
+int Poll(struct pollfd *fdarray, unsigned long nfds, int timeout);
 
 typedef void Sigfunc(int signo);
 #if !defined(HAVE_SIGNAL_PROTO)
@@ -165,7 +169,7 @@ void sock_set_port(struct sockaddr *sockaddr,
 #ifndef min
 #define min(a, b) ((a) < (b) ? (a) : (b))
 #endif // min
-  
+
 #ifdef __cplusplus
 }
 #endif
