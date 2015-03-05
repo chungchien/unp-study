@@ -53,6 +53,7 @@ add_subdirectory(libfree)
 add_subdirectory(intro)
 add_subdirectory(tcpcliserv)
 add_subdirectory(sockopt)
+add_subdirectory(exercises)
 
 if (BUILD_TESTS)
   add_subdirectory(gtest-1.7.0)
