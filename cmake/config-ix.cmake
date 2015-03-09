@@ -6,6 +6,9 @@ check_include_files(strings.h HAVE_STRINGS_H)
 check_include_files(string.h HAVE_STRING_H)
 check_include_files(netinet/in.h HAVE_NETINET_IN_H)
 check_include_files(arpa/inet.h HAVE_ARPA_INET_H)
+check_include_files(netinet/sctp.h HAVE_NETINET_SCTP_H)
+check_include_files(netinet/tcp.h HAVE_NETINET_TCP_H)
+check_include_files(netinet/udp.h HAVE_NETINET_UDP_H)
 
 # 檢查函數是否存在
 include(CheckFunctionExists)

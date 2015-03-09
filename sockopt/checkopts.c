@@ -1,6 +1,8 @@
 #include "unp.h"
 #include <netinet/tcp.h>  /* for TCP_xxx defines */
+#ifdef HAVE_NETINET_SCTP_H
 #include <netinet/sctp.h> /* for SCTP_xxx defines */
+#endif
 
 union val {
   int i_val;
@@ -38,18 +40,24 @@ struct sock_opts {
   {"SO_REUSEPORT", 0, 0, NULL},
 #endif
   {"SO_TYPE", SOL_SOCKET, SO_TYPE, sock_str_int},
-  {"SO_USELOOPBACK", SOL_SOCKET, SO_USELOOPBACK, sock_str_flag},
+  //{"SO_USELOOPBACK", SOL_SOCKET, SO_USELOOPBACK, sock_str_flag},
   {"IP_TOS", IPPROTO_IP, IP_TOS, sock_str_int},
   {"IP_TTL", IPPROTO_IP, IP_TTL, sock_str_int},
+#ifdef IPV6_DONTFRAG
   {"IPV6_DONTFRAG", IPPROTO_IPV6, IPV6_DONTFRAG, sock_str_flag},
+#endif
   {"IPV6_UNICAST_HOPS", IPPROTO_IPV6, IPV6_UNICAST_HOPS, sock_str_int},
   {"IPV6_V6ONLY", IPPROTO_IPV6, IPV6_V6ONLY, sock_str_flag},
   {"TCP_MAXSEG", IPPROTO_TCP, TCP_MAXSEG, sock_str_int},
   {"TCP_NODELAY", IPPROTO_TCP, TCP_NODELAY, sock_str_flag},
+#ifdef IPPROTO_SCTP
   {"SCTP_AUTOCLOSE", IPPROTO_SCTP, SCTP_AUTOCLOSE, sock_str_int},
+#  ifdef SCTP_MAXBURST
   {"SCTP_MAXBURST", IPPROTO_SCTP, SCTP_MAXBURST, sock_str_int},
+#  endif
   {"SCTP_MAXSEG", IPPROTO_SCTP, SCTP_MAXSEG, sock_str_int},
   {"SCTP_NODELAY", IPPROTO_SCTP, SCTP_NODELAY, sock_str_flag},
+#endif  /* IPPROTO_SCTP */
   {NULL, 0, 0, NULL}
 };
 
