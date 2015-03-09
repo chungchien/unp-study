@@ -8,6 +8,9 @@
 #cmakedefine HAVE_STRING_H 1   /* string.h */
 #cmakedefine HAVE_NETINET_IN_H 1  /* netinet/in.h */
 #cmakedefine HAVE_ARPA_INET_H 1   /* arpa/inet.h */
+#cmakedefine HAVE_NETINET_TCP_H 1 /* netinet/tcp.h */
+#cmakedefine HAVE_NETINET_UDP_H 1 /* netinet/udp.h */
+#cmakedefine HAVE_NETINET_SCTP_H 1  /* netinet/sctp.h */
 
 /* 如果函數存在則由cmake定義*/
 #cmakedefine HAVE_BZERO 1  /* bzero */
