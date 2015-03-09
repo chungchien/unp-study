@@ -2,7 +2,8 @@
 
 int main(int argc, char *argv[])
 {
-  int listenfd, sockfd, flag;
+  int listenfd, sockfd;
+  /* int flag; */
   socklen_t len;
   struct sockaddr_in cliaddr, servaddr;
 
@@ -12,10 +13,8 @@ int main(int argc, char *argv[])
 
   listenfd = Socket(AF_INET, SOCK_STREAM, 0);
 
-  /* 当服务器和客方端在同一台主机上时需要设置服务器的SO_REUSEADDR选项
-   * 否则客户端在连接时会返回地址己使用的错误 */
-  flag = 1;
-  Setsockopt(listenfd, SOL_SOCKET, SO_REUSEADDR, &flag, sizeof(flag));
+  /* flag = 1; */
+  /* Setsockopt(listenfd, SOL_SOCKET, SO_REUSEADDR, &flag, sizeof(flag)); */
 
   bzero(&servaddr, sizeof(servaddr));
   servaddr.sin_family = AF_INET;
