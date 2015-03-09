@@ -59,6 +59,10 @@ int Select(int nfds, fd_set *readfds, fd_set *writefds,
            fd_set *exceptfds, struct timeval *timeout);
 void Shutdown(int sockfd, int how);
 int Poll(struct pollfd *fdarray, unsigned long nfds, int timeout);
+void Getsockopt(int sockfd, int level, int optname,
+                void *optval, socklen_t *optlen);
+void Setsockopt(int sockfd, int level, int optname,
+                const void *optval, socklen_t optlen);
 
 typedef void Sigfunc(int signo);
 #if !defined(HAVE_SIGNAL_PROTO)

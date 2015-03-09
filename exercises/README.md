@@ -8,3 +8,7 @@
 
 * 習題 7.2：
   * daytimetcpcli_testmss.c
+
+* 習題 7.4：
+  * reuseaddrcli.c --- 客戶端
+  * reuseaddrserv.c --- 服務器端

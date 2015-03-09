@@ -67,3 +67,17 @@ int Poll(struct pollfd *fdarray, unsigned long nfds, int timeout)
     err_sys("poll error");
   return ret;
 }
+
+void Getsockopt(int sockfd, int level, int optname, void *optval,
+                socklen_t *optlen)
+{
+  if (getsockopt(sockfd, level, optname, optval, optlen) < 0)
+    err_sys("getsockopt error");
+}
+
+void Setsockopt(int sockfd, int level, int optname, const void *optval,
+                socklen_t optlen)
+{
+  if (setsockopt(sockfd, level, optname, optval, optlen) < 0)
+    err_sys("setsockopt error");
+}
