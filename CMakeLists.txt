@@ -20,15 +20,15 @@ MinSizeRel."
     FORCE)
 endif ()
 
-set(CMAKE_C_FLAGS_DEBUG "$ENV{CFLAGS} -O0 -Wall -g -ggdb")
+set(CMAKE_C_FLAGS_DEBUG "$ENV{CFLAGS} -Wall -Wextra -g -ggdb")
 set(CMAKE_C_FLAGS_RELEASE "$ENV{CFLAGS} -O2 -Wall")
-set(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g -ggdb")
+set(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -Wall -Wextra -g -ggdb")
 set(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O2 -Wall")
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
   add_definitions(-D_GUN_SOURCE -D_POSIX_C_SOURCE=200809L -D_XOPEN_SOURCE=700)
 endif (CMAKE_SYSTEM_NAME STREQUAL "Linux")
-  
+
 # 添加自定義模塊路徑
 set(CMAKE_MODULE_PATH
   ${CMAKE_MODULE_PATH}
@@ -58,6 +58,7 @@ add_subdirectory(intro)
 add_subdirectory(tcpcliserv)
 add_subdirectory(sockopt)
 add_subdirectory(exercises)
+add_subdirectory(udpcliserv)
 
 if (BUILD_TESTS)
   add_subdirectory(gtest-1.7.0)

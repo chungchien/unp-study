@@ -82,3 +82,52 @@ void Setsockopt(int sockfd, int level, int optname, const void *optval,
     err_sys("setsockopt error");
 }
 
+ssize_t Recv(int s, void *buf, size_t len, int flags)
+{
+  ssize_t ret = recv(s, buf, len, flags);
+  if (ret < 0)
+    err_sys("recv error");
+  return ret;
+}
+
+ssize_t Recvfrom(int sockfd, void *buf, size_t buflen, int flags,
+             SA *from, socklen_t *fromlen)
+{
+  ssize_t ret = recvfrom(sockfd, buf, buflen, flags, from, fromlen);
+  if (ret < 0)
+    err_sys("recvfrom error");
+  return ret;
+}
+
+ssize_t Recvmsg(int sockfd, struct msghdr *msg, int flags)
+{
+  ssize_t ret = recvmsg(sockfd, msg, flags);
+  if (ret == -1)
+    err_sys("recvmsg error");
+  return ret;
+}
+
+ssize_t Send(int sockfd, const void *msg, size_t len, int flags)
+{
+  ssize_t ret = send(sockfd, msg, len, flags);
+  if (ret == -1)
+    err_sys("send error");
+  return ret;
+}
+
+ssize_t Sendto(int sockfd, const void *msg, size_t len, int flags,
+               const struct sockaddr *to, socklen_t tolen)
+{
+  ssize_t ret = sendto(sockfd, msg, len, flags, to, tolen);
+  if (ret == -1)
+    err_sys("sendto error");
+  return ret;
+}
+
+ssize_t Sendmsg(int sockfd, const struct msghdr *msg, int flags)
+{
+  ssize_t ret = sendmsg(sockfd, msg, flags);
+  if (ret == -1)
+    err_sys("sendmsg error");
+  return ret;
+}

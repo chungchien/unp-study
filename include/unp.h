@@ -29,7 +29,9 @@ extern "C" {
 #define SERV_PORT       9876
 #define SERV_PORT_STR   "9876"
 
-typedef struct sockaddr SA;
+// typedef struct sockaddr SA;
+#define SA struct sockaddr
+
 
 #if !defined(HAVE_BZERO)
 inline void bzero(void *dest, size_t nbytes)
@@ -49,6 +51,8 @@ void Connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
 
 void str_echo(int sockfd);
 void str_cli(FILE *fp, int sockfd);
+void dg_echo(int sockfd, SA *pcliaddr, socklen_t clilen);
+void dg_cli(FILE *fp, int sockfd, const SA *pserveraddr, socklen_t servlen);
 
 /* unix 系統調用包裹函數  */
 ssize_t Write(int fd, const void *buf, size_t nbytes);
@@ -63,6 +67,14 @@ void Getsockopt(int sockfd, int level, int optname,
                 void *optval, socklen_t *optlen);
 void Setsockopt(int sockfd, int level, int optname,
                 const void *optval, socklen_t optlen);
+ssize_t Send(int sockfd, const void *buf, size_t len, int flags);
+ssize_t Sendto(int sockfd, const void *buf, size_t len, int flags,
+               const SA *to, socklen_t tolen);
+ssize_t Sendmsg(int sockfd, const struct msghdr *msg, int flags);
+ssize_t Recv(int sockfd, void *buf, size_t len, int flags);
+ssize_t Recvfrom(int sockfd, void *buf, size_t len, int flags,
+                 SA *from, socklen_t *fromlen);
+ssize_t Recvmsg(int sockfd, struct msghdr *msg, int flags);
 
 typedef void Sigfunc(int signo);
 #if !defined(HAVE_SIGNAL_PROTO)
