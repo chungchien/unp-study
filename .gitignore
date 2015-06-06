@@ -2,3 +2,14 @@
 *.[oa]
 *.d  # make 生成的依賴文件
 build/
+
+# gtags 生成的文件
+GPATH
+GRTAGS
+GTAGS
+
+# 本地配置文件
+.dir-locals.el
+
+# 自動生成的 Makefile 文件
+*/Makefile
