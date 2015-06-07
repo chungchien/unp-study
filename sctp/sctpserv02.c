@@ -16,9 +16,7 @@ int main(int argc, char **argv)
       stream_increment = atoi(argv[1]);
    sock_fd = Socket(AF_INET, SOCK_SEQPACKET, IPPROTO_SCTP);
 
-   /* 實際上單單改變服務器端外出流的數目而不改變客戶端的是無法增加外出流的數目的
-    * 但是只更改客戶端的卻可以同時影响服務器端的外出流的數目。所以實際上在這里添
-    * 加的這一段是沒用的。*/
+   /* 實際上單單改變服務器端外出流的數目而不改變客戶端的是無法增加外出流的數目的 */
    bzero(&initm, sizeof(initm));
    initm.sinit_num_ostreams = SERV_MORE_STRMS_SCTP;
    Setsockopt(sock_fd, IPPROTO_SCTP, SCTP_INITMSG,
