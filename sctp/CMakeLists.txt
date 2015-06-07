@@ -35,3 +35,10 @@ add_executable(sctpserv03
   sctp_addr_to_associd.c
   )
 target_link_libraries(sctpserv03 unp)
+
+add_executable(sctpclient03
+  sctpclient03.c
+  sctp_strcli.c
+  sctp_strcliecho.c
+  )
+target_link_libraries(sctpclient03 unp)

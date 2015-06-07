@@ -23,7 +23,8 @@ sctpstr_cli(FILE *fp, int sock_fd, struct sockaddr *to,
                    to, tolen, 0, 0, sri.sinfo_stream, 0, 0);
 
       len = sizeof(peeraddr);
-      msg_flags = MSG_NOTIFICATION;
+      msg_flags = 0;
+      printf("msg_flags = %d\n", msg_flags);
       rd_sz = Sctp_recvmsg(sock_fd, recvline, sizeof(recvline),
                            (SA *)&peeraddr, &len, &sri, &msg_flags);
       printf("From str:%d seq:%d (assoc:0x%x):",

@@ -23,12 +23,13 @@ int main(int argc, char **argv)
 
    bzero(&events, sizeof(events));
    events.sctp_data_io_event = 1;
-   Setsockopt(sock_fd, IPPROTO_SCTP, SCTP_EVENTS, &events, sizeof(events));
+   Setsockopt(sock_fd, IPPROTO_SCTP, SCTP_EVENTS,
+              &events, sizeof(events));
 
    Listen(sock_fd, LISTENQ);
    for ( ; ; ) {
       len = sizeof(struct sockaddr_in);
-      msg_flags = MSG_NOTIFICATION;
+      msg_flags = 0;
       rd_sz = Sctp_recvmsg(sock_fd, readbuf, sizeof(readbuf),
                            (SA *) &cliaddr, &len, &sri, &msg_flags);
       if (stream_increment) {

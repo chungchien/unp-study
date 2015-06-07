@@ -39,7 +39,7 @@ int main(int argc, char **argv)
    Listen(sock_fd, LISTENQ);
    for ( ; ; ) {
       len = sizeof(struct sockaddr_in);
-      msg_flags = MSG_NOTIFICATION;
+      msg_flags = 0;
       rd_sz = Sctp_recvmsg(sock_fd, readbuf, sizeof(readbuf),
                            (SA *) &cliaddr, &len, &sri, &msg_flags);
       if (stream_increment) {
